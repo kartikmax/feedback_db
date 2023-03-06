@@ -1,19 +1,27 @@
 from flask import Flask, render_template, request
 from flask_sqlalchemy import SQLAlchemy
+import os
 # from send_mail import send_mail
+
+from dotenv import load_dotenv
+
+load_dotenv()
+
 
 app = Flask(__name__)
 
-ENV = 'dev'
 
-if ENV == 'dev':
-    app.debug = True
-    app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:kartik@localhost/lexus'
-else:
-    app.debug = False
-    app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:rISFvS1d06lIgidqloYq@containers-us-west-165.railway.app:6826/railway'
+# ENV = 'dev'
 
-app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+# if ENV == 'dev':
+#     app.debug = True
+#     app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:kartik@localhost/lexus'
+# else:
+#     app.debug = False
+#     app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:rISFvS1d06lIgidqloYq@containers-us-west-165.railway.app:6826/railway'
+
+# app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+app.config['SQLALCHEMY_DATABASE_URI'] = os.environ['DATABASE_URL']
 
 db = SQLAlchemy(app)
 
