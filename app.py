@@ -4,21 +4,19 @@ import os
 from dotenv import load_dotenv
 load_dotenv()
 
+environment = os.getenv("ENVIRONMENT")
 
 app = Flask(__name__)
 
 
-# ENV = 'dev'
 
-# if ENV == 'dev':
-#     app.debug = True
-#     app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:kartik@localhost/lexus'
-# else:
-#     app.debug = False
-#     app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:rISFvS1d06lIgidqloYq@containers-us-west-165.railway.app:6826/railway'
+if environment == 'dev':
+    app.debug = True
+    app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:kartik@localhost/lexus'
+else:
+    app.debug = False
+    app.config['SQLALCHEMY_DATABASE_URI'] = os.environ['DATABASE_URL']
 
-# app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-app.config['SQLALCHEMY_DATABASE_URI'] = os.environ['DATABASE_URL']
 
 db = SQLAlchemy(app)
 
@@ -40,6 +38,7 @@ class Feedback(db.Model):
 
 @app.route('/')
 def index():
+    print(environment,"here is env")
     return render_template('index.html')
 
 
