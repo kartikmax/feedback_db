@@ -4,7 +4,8 @@ import os
 from dotenv import load_dotenv
 load_dotenv()
 
-environment = os.getenv("ENVIRONMENT")
+# environment = os.getenv("ENVIRONMENT")
+environment = ''
 
 app = Flask(__name__)
 
