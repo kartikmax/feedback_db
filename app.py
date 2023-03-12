@@ -11,11 +11,11 @@ app = Flask(__name__)
 
 
 if environment == 'dev':
-    app.debug = True
-    app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:kartik@localhost/lexus'
+    debugging = True
+    app.config['SQLALCHEMY_DATABASE_URI'] = os.environ['DATABASE_URL_DEV']
 else:
-    app.debug = False
-    app.config['SQLALCHEMY_DATABASE_URI'] = os.environ['DATABASE_URL']
+    debugging= False
+    app.config['SQLALCHEMY_DATABASE_URI'] = os.environ['DATABASE_URL_SERVER']
 
 
 db = SQLAlchemy(app)
@@ -49,7 +49,6 @@ def submit():
         dealer = request.form['dealer']
         rating = request.form['rating']
         comments = request.form['comments']
-        # print(customer, dealer, rating, comments)
         if customer == '' or dealer == '':
             return render_template('index.html', message='Please enter required fields')
         if db.session.query(Feedback).filter(Feedback.customer == customer).count() == 0:
@@ -62,4 +61,4 @@ def submit():
 
 
 if __name__ == '__main__':
-    app.run()
+    app.run(debug=debugging)
