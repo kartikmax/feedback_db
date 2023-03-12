@@ -60,4 +60,4 @@ def submit():
 
 
 if __name__ == '__main__':
-    app.run(debug=debugging)
+    app.run(debug=True)
