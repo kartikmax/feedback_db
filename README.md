@@ -1,20 +1,57 @@
-# Python Feedback App
 
-> Python Flask Feedback app that sends data to Postgres database and emails user
+# Template Query form
 
-## Quick Start
+A simple flask template with connection of database.
+
+
+## Environment Variables
+
+To run this project, you will need to add the following environment variables to your .env file
+
+``
+DATABASE_URL=YOUR_DATABASE_URL
+``
+
+
+
+
+## Run Locally
+
+Clone the project
 
 ```bash
-# Add your DATABASE URI in app.py and your mail params in send_mail.py
-
-# Install dependencies
-pipenv shell
-pipenv install
-
-# Serve on localhost:5000
-python app.py
+  git clone https://link-to-project
 ```
 
-### Heroku Deployment Steps
+Go to the project directory
 
-https://gist.github.com/bradtraversy/0029d655269c8a972df726ed0ac56b88
+```bash
+  cd feedback-db
+```
+
+Install dependencies
+
+```bash
+  pip install -r requirements.txt
+```
+Create a virtual environment by 
+```bash
+ python -m venv venv
+ venv\Scripts\activate.ps1
+```
+
+Start the server
+
+```bash
+  python app.py 
+```
+
+
+## Tech Stack
+
+**Client:** HTML CSS JS
+
+**Server:** Python flask
+
+**Database:** Postgres Sql
+

@@ -1,10 +1,7 @@
 from flask import Flask, render_template, request
 from flask_sqlalchemy import SQLAlchemy
 import os
-# from send_mail import send_mail
-
 from dotenv import load_dotenv
-
 load_dotenv()
 
 
